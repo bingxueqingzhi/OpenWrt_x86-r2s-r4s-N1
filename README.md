@@ -78,7 +78,7 @@
 
 ```
 screen -S openwrt
-bash -c "$(curl -fsSL https://git.io/opbuild.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/bingxueqingzhi/OpenWrt_x86-r2s-r4s-N1/master/onekey/build.sh)"
 ```
 
 #### 二次编译:
