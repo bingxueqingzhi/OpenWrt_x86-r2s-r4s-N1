@@ -1,3 +1,5 @@
+
+
 sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += perl btrfs-progs my-autocore-arm luci-app-amlogic kmod-brcmfmac wpad-basic-wolfssl iw -luci-app-attendedsysupgrade -luci-app-gpsysupgrade fdisk kmod-usb2 kmod-usb3/' target/linux/armvirt/Makefile
 
 echo '
@@ -21,5 +23,5 @@ CONFIG_REALTEK_PHY=y
 CONFIG_CPU_FREQ_GOV_USERSPACE=y
 CONFIG_CPU_FREQ_GOV_ONDEMAND=y
 CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
-' >> ./target/linux/armvirt/64/config-5.15
+' >> ./target/linux/armvirt/64/config-5.10
 
