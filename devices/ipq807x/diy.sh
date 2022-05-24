@@ -1,6 +1,8 @@
 #!/bin/bash
-
 shopt -s extglob
+
+SHELL_FOLDER=$(dirname $(readlink -f "$0"))
+bash $SHELL_FOLDER/../common/kernel_5.15.sh
 
 rm -rf package/boot/uboot-envtools package/firmware/ipq-wifi package/firmware/ath11k* package/qca package/qat package/kernel
 svn export --force https://github.com/Boos4721/openwrt/trunk/package/boot/uboot-envtools package/boot/uboot-envtools
@@ -11,10 +13,7 @@ svn export --force https://github.com/Boos4721/openwrt/trunk/package/qca package
 svn export --force https://github.com/Boos4721/openwrt/trunk/package/qat package/qat
 svn export --force https://github.com/Boos4721/openwrt/trunk/package/kernel package/kernel
 
-curl -sfL https://raw.githubusercontent.com/openwrt/openwrt/openwrt-22.03/package/kernel/linux/modules/video.mk -o package/kernel/linux/modules/video.mk
-
-
-rm -rf target/linux/generic target/linux/ipq807x/!(patches-5.10)
+rm -rf target/linux/generic target/linux/ipq807x/!(patches-5.15)
 svn export --force https://github.com/Boos4721/openwrt/trunk/target/linux/generic target/linux/generic
 rm -rf target/linux/generic/hack-5.10/531-debloat_lzma.patch target/linux/generic/hack-5.10/600-bridge_offload.patch
 svn co https://github.com/Boos4721/openwrt/trunk/target/linux/ipq807x target/linux/ipq807x
