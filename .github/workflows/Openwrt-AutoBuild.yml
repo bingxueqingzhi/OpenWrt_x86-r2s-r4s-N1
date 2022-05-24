@@ -220,6 +220,7 @@ jobs:
         mkdir -p firmware/${{matrix.target}}
         cp -rf openwrt/bin/targets/*/*/*{combined,sysupgrade}* ./firmware/${{matrix.target}}/ || true
         cd openwrt/bin/targets/*/*/
+        mv -f profiles.json profiles.json.b
         cp $GITHUB_WORKSPACE/openwrt/.config ${{matrix.target}}.config || true
         cp $GITHUB_WORKSPACE/openwrt/build_dir/target-*/linux-*/linux-*/.config ${{matrix.target}}_kernel.config || true
         mv -f packages ${{ env.KERNEL }}
