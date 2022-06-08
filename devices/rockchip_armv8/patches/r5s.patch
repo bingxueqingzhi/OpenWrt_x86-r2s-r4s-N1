@@ -17,16 +17,15 @@
 
 --- a/target/linux/rockchip/armv8/base-files/etc/board.d/02_network
 +++ b/target/linux/rockchip/armv8/base-files/etc/board.d/02_network
-@@ -21,4 +21,8 @@
+@@ -21,4 +21,7 @@
  		ucidef_set_interfaces_lan_wan 'eth0' 'eth1'
   		;;
 +	friendlyelec,nanopi-r5s)
 +		ucidef_set_interfaces_lan_wan 'eth1 eth2' 'eth0'
 +		;;
-+	*)
  	*)
  		ucidef_set_interface_lan 'eth0'
-@@ -63,4 +67,8 @@
+@@ -63,4 +66,8 @@
  		wan_mac=$(macaddr_add "$lan_mac" -1)
  		;;
 +	friendlyelec,nanopi-r5s)
