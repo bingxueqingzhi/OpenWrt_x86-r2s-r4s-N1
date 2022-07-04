@@ -1,3 +1,15 @@
+From a7af9ff9a1e5f674e238643bd65437b00536c01c Mon Sep 17 00:00:00 2001
+From: kiddin9 <48883331+kiddin9@users.noreply.github.com>
+Date: Tue, 5 Jul 2022 06:42:28 +0800
+Subject: [PATCH] Update mt7621.mk
+
+Signed-off-by: kiddin9 <48883331+kiddin9@users.noreply.github.com>
+---
+ target/linux/ramips/image/mt7621.mk | 48 +++++++++--------------------
+ 1 file changed, 15 insertions(+), 33 deletions(-)
+
+diff --git a/target/linux/ramips/image/mt7621.mk b/target/linux/ramips/image/mt7621.mk
+index bdaeac2cb16e..6bfe3ead7461 100644
 --- a/target/linux/ramips/image/mt7621.mk
 +++ b/target/linux/ramips/image/mt7621.mk
 @@ -223,7 +223,7 @@ define Device/asus_rt-n56u-b1
@@ -9,6 +21,15 @@
  endef
  TARGET_DEVICES += asus_rt-n56u-b1
  
+@@ -984,7 +984,7 @@ define Device/jcg_y2
+   JCG_MAXSIZE := 16064k
+   DEVICE_VENDOR := JCG
+   DEVICE_MODEL := Y2
+-  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware kmod-usb3
++  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware kmod-usb3 wpad-mini -wpad-basic-wolfssl -coremark -htop -bash -openssh-sftp-server
+ endef
+ TARGET_DEVICES += jcg_y2
+ 
 @@ -1369,7 +1369,7 @@ define Device/netgear_wndr3700-v5
    SERCOMM_SWVER := 0x1054
    SERCOMM_PAD := 320k
@@ -18,7 +39,7 @@
    SUPPORTED_DEVICES += wndr3700v5
  endef
  TARGET_DEVICES += netgear_wndr3700-v5
-@@ -1400,7 +1400,7 @@ define Device/oraybox_x3a
+@@ -1400,19 +1400,19 @@ define Device/oraybox_x3a
    IMAGE_SIZE := 15360k
    DEVICE_VENDOR := OrayBox
    DEVICE_MODEL := X3A
@@ -27,7 +48,12 @@
  endef
  TARGET_DEVICES += oraybox_x3a
  
-@@ -1412,7 +1412,7 @@ define Device/phicomm_k2p
+ define Device/phicomm_k2p
+   $(Device/dsa-migration)
+-  IMAGE_SIZE := 15744k
++  IMAGE_SIZE := 16064k
+   DEVICE_VENDOR := Phicomm
+   DEVICE_MODEL := K2P
    DEVICE_ALT0_VENDOR := Phicomm
    DEVICE_ALT0_MODEL := KE 2P
    SUPPORTED_DEVICES += k2p
