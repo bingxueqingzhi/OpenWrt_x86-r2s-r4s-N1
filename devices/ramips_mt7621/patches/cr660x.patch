@@ -1,15 +1,15 @@
-From a7af9ff9a1e5f674e238643bd65437b00536c01c Mon Sep 17 00:00:00 2001
+From 593d238ebf777c36c9ee819a1e20f59da5adc361 Mon Sep 17 00:00:00 2001
 From: kiddin9 <48883331+kiddin9@users.noreply.github.com>
-Date: Tue, 5 Jul 2022 06:42:28 +0800
+Date: Tue, 5 Jul 2022 17:54:53 +0800
 Subject: [PATCH] Update mt7621.mk
 
 Signed-off-by: kiddin9 <48883331+kiddin9@users.noreply.github.com>
 ---
- target/linux/ramips/image/mt7621.mk | 48 +++++++++--------------------
- 1 file changed, 15 insertions(+), 33 deletions(-)
+ target/linux/ramips/image/mt7621.mk | 46 +++++++++--------------------
+ 1 file changed, 14 insertions(+), 32 deletions(-)
 
 diff --git a/target/linux/ramips/image/mt7621.mk b/target/linux/ramips/image/mt7621.mk
-index bdaeac2cb16e..6bfe3ead7461 100644
+index bdaeac2cb16e..72fbd3930a80 100644
 --- a/target/linux/ramips/image/mt7621.mk
 +++ b/target/linux/ramips/image/mt7621.mk
 @@ -223,7 +223,7 @@ define Device/asus_rt-n56u-b1
