@@ -1,15 +1,3 @@
-From 593d238ebf777c36c9ee819a1e20f59da5adc361 Mon Sep 17 00:00:00 2001
-From: kiddin9 <48883331+kiddin9@users.noreply.github.com>
-Date: Tue, 5 Jul 2022 17:54:53 +0800
-Subject: [PATCH] Update mt7621.mk
-
-Signed-off-by: kiddin9 <48883331+kiddin9@users.noreply.github.com>
----
- target/linux/ramips/image/mt7621.mk | 46 +++++++++--------------------
- 1 file changed, 14 insertions(+), 32 deletions(-)
-
-diff --git a/target/linux/ramips/image/mt7621.mk b/target/linux/ramips/image/mt7621.mk
-index bdaeac2cb16e..72fbd3930a80 100644
 --- a/target/linux/ramips/image/mt7621.mk
 +++ b/target/linux/ramips/image/mt7621.mk
 @@ -223,7 +223,7 @@ define Device/asus_rt-n56u-b1
@@ -21,12 +9,21 @@ index bdaeac2cb16e..72fbd3930a80 100644
  endef
  TARGET_DEVICES += asus_rt-n56u-b1
  
+@@ -673,7 +673,7 @@ define Device/glinet_gl-mt1300
+   IMAGE_SIZE := 32448k
+   DEVICE_VENDOR := GL.iNet
+   DEVICE_MODEL := GL-MT1300
+-  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware kmod-usb3
++  DEVICE_PACKAGES := kmod-mt7615d_dbdc kmod-usb3 -wpad-basic-wolfssl
+ endef
+ TARGET_DEVICES += glinet_gl-mt1300
+ 
 @@ -984,7 +984,7 @@ define Device/jcg_y2
    JCG_MAXSIZE := 16064k
    DEVICE_VENDOR := JCG
    DEVICE_MODEL := Y2
 -  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware kmod-usb3
-+  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware kmod-usb3 wpad-mini -wpad-basic-wolfssl -coremark -htop -bash -openssh-sftp-server
++  DEVICE_PACKAGES := kmod-mt7615d_dbdc kmod-usb3 -wpad-basic-wolfssl -coremark -htop -bash -openssh-sftp-server
  endef
  TARGET_DEVICES += jcg_y2
  
@@ -58,7 +55,7 @@ index bdaeac2cb16e..72fbd3930a80 100644
    DEVICE_ALT0_MODEL := KE 2P
    SUPPORTED_DEVICES += k2p
 -  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware
-+  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware wpad-mini -wpad-basic-wolfssl -coremark -htop -bash -openssh-sftp-server
++  DEVICE_PACKAGES := kmod-mt7615d_dbdc -wpad-basic-wolfssl -coremark -htop -bash -openssh-sftp-server
  endef
  TARGET_DEVICES += phicomm_k2p
  
@@ -225,3 +222,19 @@ index bdaeac2cb16e..72fbd3930a80 100644
  	ubootenv_add_uci_config "/dev/mtd1" "0x0" "0x10000" "0x20000"
  	;;
  esac
+
+--- a/target/linux/ramips/mt7621/base-files/etc/board.d/02_network
++++ b/target/linux/ramips/mt7621/base-files/etc/board.d/02_network
+@@ -75,6 +75,12 @@ ramips_setup_interfaces()
+ 	mikrotik,routerboard-760igs)
+ 		ucidef_set_interfaces_lan_wan "lan2 lan3 lan4 lan5" "wan sfp"
+ 		;;
++	jcg,y2|\
++	phicomm,k2p|\
++	xiaoyu,xy-c5)
++		ucidef_add_switch "switch0" \
++			"0:lan" "1:lan" "2:lan" "3:lan" "4:wan" "6u@eth0" "5u@eth1"
++		;;
+ 	tplink,eap235-wall-v1|\
+ 	tplink,eap615-wall-v1)
+ 		ucidef_set_interface_lan "lan0 lan1 lan2 lan3"
