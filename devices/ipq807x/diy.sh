@@ -20,6 +20,12 @@ svn co https://github.com/Boos4721/openwrt/trunk/target/linux/ipq807x target/lin
 rm -rf target/linux/ipq807x/{.svn,patches-5.10/.svn}
 svn co https://github.com/Boos4721/openwrt/trunk/target/linux/ipq807x/patches-5.10 target/linux/ipq807x/patches-5.10
 
+curl -sfL https://raw.githubusercontent.com/openwrt/openwrt/master/include/kernel-5.15 -o include/kernel-5.15
+
+kernel_v="$(cat include/kernel-5.15 | grep LINUX_KERNEL_HASH-* | cut -f 2 -d - | cut -f 1 -d ' ')"
+echo "KERNEL=${kernel_v}" >> $GITHUB_ENV || true
+sed -i "s?targets/%S/.*'?targets/%S/$kernel_v'?" include/feeds.mk
+
 sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += luci-app-turboacc/' target/linux/ipq807x/Makefile
 
 echo '
