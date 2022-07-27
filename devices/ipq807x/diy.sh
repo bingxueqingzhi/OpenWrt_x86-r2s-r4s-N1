@@ -13,7 +13,6 @@ svn export --force https://github.com/Boos4721/openwrt/trunk/package/qca package
 svn export --force https://github.com/Boos4721/openwrt/trunk/package/qat package/qat
 svn export --force https://github.com/Boos4721/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
 
-svn co https://github.com/Boos4721/openwrt/trunk/target/linux/generic/hack-5.15 target/linux/generic/hack-5.15
 svn co https://github.com/Boos4721/openwrt/trunk/target/linux/generic/pending-5.15 target/linux/generic/pending-5.15
 rm -rf target/linux/ipq807x/!(patches-5.15)
 svn co https://github.com/Boos4721/openwrt/trunk/target/linux/ipq807x target/linux/ipq807x
@@ -25,6 +24,8 @@ curl -sfL https://raw.githubusercontent.com/openwrt/openwrt/master/include/kerne
 kernel_v="$(cat include/kernel-5.15 | grep LINUX_KERNEL_HASH-* | cut -f 2 -d - | cut -f 1 -d ' ')"
 echo "KERNEL=${kernel_v}" >> $GITHUB_ENV || true
 sed -i "s?targets/%S/.*'?targets/%S/$kernel_v'?" include/feeds.mk
+
+curl -sfL https://raw.githubusercontent.com/Boos4721/openwrt/master/package/kernel/linux/modules/netsupport.mk -o package/kernel/linux/modules/netsupport.mk
 
 sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += luci-app-turboacc/' target/linux/ipq807x/Makefile
 
