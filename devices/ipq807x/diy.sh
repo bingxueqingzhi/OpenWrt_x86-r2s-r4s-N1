@@ -17,7 +17,12 @@ svn co https://github.com/Boos4721/openwrt/trunk/target/linux/generic/pending-5.
 
 svn co https://github.com/Boos4721/openwrt/trunk/target/linux/ipq807x target/linux/ipq807x
 
+curl -sfL https://raw.githubusercontent.com/Lstions/openwrt-boos/master/target/linux/ipq807x/patches-5.15/608-5.15-qca-nss-ssdk-delete-fdb-entry-using-netdev -o target/linux/ipq807x/patches-5.15/608-5.15-qca-nss-ssdk-delete-fdb-entry-using-netdev.patch
+
 curl -sfL https://raw.githubusercontent.com/Boos4721/openwrt/master/include/kernel-5.15.mk -o include/kernel-5.15
+kernel_v="$(cat include/kernel-5.15 | grep LINUX_KERNEL_HASH-* | cut -f 2 -d - | cut -f 1 -d ' ')"
+echo "KERNEL=${kernel_v}" >> $GITHUB_ENV || true
+sed -i "s?targets/%S/.*'?targets/%S/$kernel_v'?" include/feeds.mk
 
 curl -sfL https://raw.githubusercontent.com/Boos4721/openwrt/master/package/kernel/linux/modules/netsupport.mk -o package/kernel/linux/modules/netsupport.mk
 
