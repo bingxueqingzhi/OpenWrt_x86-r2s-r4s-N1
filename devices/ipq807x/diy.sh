@@ -3,8 +3,6 @@ shopt -s extglob
 
 SHELL_FOLDER=$(dirname $(readlink -f "$0"))
 bash $SHELL_FOLDER/../common/kernel_5.15.sh
-
-git clone https://github.com/Boos4721/openwrt boos
 	
 rm -rf package/boot/uboot-envtools package/firmware/ipq-wifi package/firmware/ath11k* package/kernel/mac80211 package/qca package/qat linux/generic
 
@@ -26,6 +24,7 @@ curl -sfL https://raw.githubusercontent.com/Boos4721/openwrt/master/package/kern
 curl -sfL https://raw.githubusercontent.com/Boos4721/openwrt/master/include/kernel-5.15.mk -o include/kernel-5.15
 COMMENT
 
+git clone https://github.com/Boos4721/openwrt boos
 mv -f boos/package/boot/uboot-envtools package/boot/uboot-envtools
 mv -f boos/package/firmware/ipq-wifi package/firmware/ipq-wifi
 mv -f boos/package/firmware/ath11k-board /package/firmware/ath11k-board
