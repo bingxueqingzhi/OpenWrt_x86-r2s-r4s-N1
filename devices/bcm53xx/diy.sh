@@ -14,13 +14,6 @@ CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
 ' >> ./target/linux/bcm53xx/config-5.15
 
 
-sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += autocore-arm luci-app-cpufreq/' target/linux/bcm53xx/Makefile
-
-echo '
-CONFIG_CPU_FREQ_GOV_USERSPACE=y
-CONFIG_CPU_FREQ_GOV_ONDEMAND=y
-CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
-' >> ./target/linux/bcm53xx/config-5.10
 
 
 
