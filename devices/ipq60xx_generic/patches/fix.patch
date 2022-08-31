@@ -41,6 +41,18 @@
  	dd if=$(1) of=$(1).new bs=$(2) conv=sync
  	mv $(1).new $(1)
 
+--- a/target/linux/ipq60xx/patches-4.4/901-arm64-boot-add-dts-files.patch
++++ b/target/linux/ipq60xx/patches-4.4/901-arm64-boot-add-dts-files.patch
+@@ -16,7 +16,7 @@
+ +				qcom-ipq6018-mr7350.dtb \
+ +				qcom-ipq6018-qihoo-v6.dtb \
+ +				qcom-ipq6018-wf-hr6001.dtb \
+-+				ipq6018-redmi-ax5-jdcloud.dtb \
+++				qcom-ipq6018-redmi-ax5-jdcloud.dtb \
+ +				qcom-ipq6018-zn-m2.dtb \
+  				qcom-ipq807x-hk01.dtb \
+  				qcom-ipq807x-hk01.c2.dtb \
+
 --- a/package/network/utils/iptables/Makefile
 +++ b/package/network/utils/iptables/Makefile
 @@ -784,7 +784,6 @@ $(eval $(call BuildPlugin,iptables-mod-ulog,$(IPT_ULOG-m)))
